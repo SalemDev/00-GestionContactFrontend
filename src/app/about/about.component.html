@@ -1,0 +1,28 @@
+<div>
+  <div> <h2> Saisie type d'information </h2></div>
+  <form #f="ngForm" (ngSubmit)="onSaveContact(f.value)">
+    <div class="form-group">
+      <label> Mode paiement : </label>
+      <input type="radio" value="cheque"  [attr.disabled]='null' name="typePayement" [(ngModel)]="typePaySlected"> cheque
+      <input type="radio" value="prelevement" [attr.disabled]='null' name="typePayement"  [(ngModel)]="typePaySlected"> prelevement
+      <input type="radio" value="carte bancaire" [attr.disabled]="valeurSaisie>plafond ? '' : null" name="typePayement" [(ngModel)]="typePaySlected"> carte bancaire
+    </div>
+    <div class="form-group" [hidden]="typePaySlected=='prelevement'?false:true">
+      <input type="radio" value="monIban"  [attr.disabled]='null' name="food"  [(ngModel)]="typeIbanSlected"> mon iban
+      <input type="radio" value="nouvelIban" [attr.disabled]='null' name="food" [(ngModel)]="typeIbanSlected" > nouvel iban
+    </div>
+
+
+    <div class="form-group"  ng-show="typeIbanSlected=='nouvelIban" >
+      <label class="control-label">nouvel iban: </label>
+      <input  #salem="ngModel" class="form-control" type="text" ngModel name="prenom" minlength="3" required>
+    </div>
+    !salem.value.length>0
+
+
+
+    <button type="submit" class="btn btn-default" [disabled]="typePaySlected=='prelevement'?false:true"  class="btn btn-primary" >Enregistrer </button>
+
+
+  </form>
+</div>

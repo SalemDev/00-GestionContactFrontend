@@ -1,0 +1,37 @@
+<div class="container">
+
+  <form #f="ngForm" (ngSubmit)="onSaveContact(f.value)">
+
+    <div class="form-group">
+        <label class="control-label">Nom: </label>
+        <input class="form-control" type="text" ngModel name="nom" required>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label">Prénom: </label>
+      <input  #slouma="ngModel" class="form-control" type="text" ngModel name="prenom" minlength="3" required>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label">Email: </label>
+      <input class="form-control" type="email" ngModel name="email" required email>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label">Tel: </label>
+      <input class="form-control" type="number" ngModel name="tel" required>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label">Date de naissance: </label>
+      <input class="form-control" type="date" ngModel name="dateNaissance" required>
+    </div>
+<div *ngIf="slouma.invalid"  class="alert alert-danger">
+    <div *ngIf="slouma.errors.minlength"> dévrait etre au min 3 characters </div>
+</div>
+    <button type="submit" [disabled]="!f.valid" class="btn btn-primary"> Save</button>
+
+  </form>
+
+
+</div>
